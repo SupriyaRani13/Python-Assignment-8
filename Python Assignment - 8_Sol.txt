@@ -1,0 +1,133 @@
+Python Assignment - 8
+
+
+1. Is the Python Standard Library included with PyInputPlus?
+
+Sol: No, the Python Standard Library is not included with PyInputPlus. PyInputPlus is a separate library that provides additional features
+     for taking input from users in a more user-friendly and robust manner compared to Python's built-in input() function.
+
+     PyInputPlus is an external library that needs to be installed separately if you want to use its functionalities:-
+      
+     pip install pyinputplus
+
+
+2. Why is PyInputPlus commonly imported with import pyinputplus as pypi?
+
+Sol: It's not common to import PyInputPlus as pypi. The standard convention is to import it as pyinputplus or a shorter abbreviation like pips or pii.
+     The name pypi is not typically used as an alias for PyInputPlus and might cause confusion since it resembles the name of the Python Package Index
+     (PyPI) from where packages are installed.
+
+    The most common and recommended way to import PyInputPlus is as follows:-
+
+    import pyinputplus as pyip
+          or
+    import pyinputplus as pips
+
+
+3. How do you distinguish between inputInt() and inputFloat()?
+
+Sol: In PyInputPlus, inputInt() and inputFloat() are two different functions used to get user input as integers and floating-point numbers, respectively.
+     They are part of the PyInputPlus module, which provides various input functions with additional features like input validation, automatic retries,
+     and timeouts.
+
+     We can use inputInt() and inputFloat():-
+
+   1. inputInt():
+      The inputInt() function is used to get integer input from the user. If the user provides non-integer input, it will prompt them to enter 
+      a valid integer until they do so.
+
+     Eg - import pyinputplus as pyip
+          age = pyip.inputInt("Enter your age: ")
+          print(f"Your age is: {age}")
+
+  2. inputFloat():
+     The inputFloat() function is used to get floating-point number input from the user. It behaves similarly to inputInt(), but it expects the
+     user to enter a valid floating-point number.
+
+    Eg - import pyinputplus as pyip
+         temperature = pyip.inputFloat("Enter the temperature: ")
+         print(f"The temperature is: {temperature}")
+
+
+4. Using PyInputPlus, how do you ensure that the user enters a whole number between 0 and 99?
+
+Sol: To ensure that the user enters a whole number between 0 and 99 using PyInputPlus, we can use the inputInt() function along with the min 
+     and max parameters. The min parameter specifies the minimum allowed value, and the max parameter specifies the maximum allowed value
+     for the input.
+
+    Eg - import pyinputplus as pyip
+         number = pyip.inputInt(prompt="Enter a whole number between 0 and 99: ", min=0, max=99)
+         print(f"You entered: {number}")
+
+
+5. What is transferred to the keyword arguments allowRegexes and blockRegexes?
+
+Sol: PyInputPlus, the allowRegexes and blockRegexes are keyword arguments that can be used with input functions like inputStr(), inputInt(), 
+     inputFloat(), etc. These arguments allow you to specify regular expressions that define patterns for the input to be allowed or blocked.
+
+    1. allowRegexes:
+       The allowRegexes argument is used to specify a list of regular expressions. If any of the regular expressions in the list match the user's 
+       input, the input is considered valid. In other words, the input must match at least one of the allowed regular expressions to be accepted.
+
+     Eg - import pyinputplus as pyip
+          email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+          email = pyip.inputStr("Enter your email address: ", allowRegexes=[email_pattern])
+          print(f"Your email address is: {email}")
+
+   2. blockRegexes:
+      The blockRegexes argument is used to specify a list of regular expressions. If any of the regular expressions in the list match the user's 
+      input, the input is considered invalid. In other words, the input must not match any of the blocked regular expressions to be accepted.
+
+     Eg - import pyinputplus as pyip
+          blocked_words = [r'bad', r'evil', r'harmful']
+          sentence = pyip.inputStr("Enter a sentence: ", blockRegexes=blocked_words)
+          print(f"Your sentence is: {sentence}")
+
+
+6. If a blank input is entered three times, what does inputStr(limit=3) do?
+
+Sol: If a blank input is entered three times in a row when using inputStr(limit=3) in PyInputPlus, it will raise a TimeoutException. 
+     The limit parameter in inputStr() specifies the maximum number of times the function will allow the user to input data before 
+     considering it a timeout situation.
+
+    Eg - import pyinputplus as pyip
+
+try:
+    data = pyip.inputStr("Enter data: ", limit=3)
+    print(f"You entered: {data}")
+except pyip.TimeoutException:
+    print("Timeout! No input received.")
+
+
+7. If blank input is entered three times, what does inputStr(limit=3, default='hello') do?
+
+Sol: If blank input is entered three times when using inputStr(limit=3, default='hello') in PyInputPlus, the function will return the default 
+     value 'hello' after the third attempt. The limit parameter in inputStr() specifies the maximum number of times the function will allow 
+     the user to input data before returning the default value.
+
+     Eg - import pyinputplus as pyip
+          data = pyip.inputStr("Enter data: ", limit=3, default='hello')
+          print(f"You entered: {data}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
